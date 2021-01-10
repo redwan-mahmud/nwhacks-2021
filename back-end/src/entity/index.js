@@ -3,6 +3,7 @@
 import Sequelize from 'sequelize';
 import { configuration } from '../config/config.js';
 import User from './user.js';
+import Job from './job.js';
 
 const env = process.env.NODE_ENV || 'development';
 
@@ -40,6 +41,7 @@ if (config.use_env_variable) {
 // });
 
 db.User = User(sequelize, Sequelize.DataTypes);
+db.Job = Job(sequelize, Sequelize.DataTypes);
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
