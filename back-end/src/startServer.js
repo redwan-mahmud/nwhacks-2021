@@ -15,6 +15,7 @@ export const startServer = async () => {
     app.use(express.json());
 
     // use router for api routes
+
     // app.use("/api", router)
 
     // send 404 if no other route matched

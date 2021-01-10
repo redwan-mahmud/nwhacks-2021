@@ -44,7 +44,6 @@ const Job = (sequelize, DataTypes) => {
         },
       },
     },
-    employerID: {},
     description: {
       type: DataTypes.STRING,
       allowNull: false,
