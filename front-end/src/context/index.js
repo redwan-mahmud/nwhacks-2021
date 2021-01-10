@@ -1,40 +1,50 @@
 import React, { useState, createContext, useContext } from 'react';
 import Data from './data';
-import Cookies from 'js-cookie';
 import PropTypes from 'prop-types';
 
 export const Context = createContext();
 
 export const Provider = ({ children }) => {
   const [authenticatedUser, setAuthenticatedUser] = useState(
-    Cookies.getJSON('authenticatedUser') || null
+    JSON.parse(localStorage.getItem('authenticatedUser')) || null
   );
+
+  console.log(authenticatedUser);
+  const [isLoading, setIsLoading] = useState(false);
+
   const data = new Data();
 
   const signIn = async (email, password) => {
-    const user = await data.getUser(email, password);
-    if (user !== null) {
-      setAuthenticatedUser({ ...user });
-      const cookieOptions = {
-        expires: '3h',
-      };
-      Cookies.set('authenticatedUser', JSON.stringify(user), {
-        cookieOptions,
-      });
-    } else {
-      Cookies.remove('authenticatedUser');
-      setAuthenticatedUser(null);
-    }
+    try {
+      setIsLoading(true);
+      const user = await data.getUser(email, password);
+      if (user !== null) {
+        console.log(user);
+        setAuthenticatedUser({ ...user });
 
-    return user;
+        localStorage.setItem(
+          'authenticatedUser',
+          JSON.stringify(authenticatedUser)
+        );
+      } else {
+        localStorage.removeItem('authenticatedUser');
+        setAuthenticatedUser(null);
+      }
+      setIsLoading(false);
+      return user;
+    } catch (err) {
+      console.log(err);
+      return null;
+    }
   };
 
   const signOut = () => {
-    Cookies.remove('authenticatedUser');
+    localStorage.removeItem('authenticatedUser');
     setAuthenticatedUser(null);
   };
 
   const value = {
+    isLoading,
     authenticatedUser,
     data,
     actions: {

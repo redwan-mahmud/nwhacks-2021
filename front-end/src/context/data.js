@@ -21,22 +21,14 @@ export default class Data {
       options.headers['Authorization'] = `Bearer ${authToken}`;
     }
 
-    return fetch(path, options);
+    return fetch('http://localhost:5000/api' + path, options);
   }
 
   async getUser(email, password) {
-    const res = await this.api(
-      '/users',
-      'GET',
-      null,
-      { email, password },
-      true
-    );
+    const res = await this.api('/auth', 'POST', { email, password });
 
     if (res.status === 200) {
-      const { authToken } = await res.json();
-
-      localStorage.setItem('authToken', authToken);
+      return await res.json();
     } else if (res.status === 401) {
       return null;
     } else {
@@ -46,7 +38,7 @@ export default class Data {
 
   async createUser(firstName, lastName, emailAddress, password) {
     const body = { firstName, lastName, emailAddress, password };
-    const res = await this.api('/user', 'POST', body);
+    const res = await this.api('/users', 'POST', body);
 
     if (res.status === 201) {
       return { created: true, errors: [] };

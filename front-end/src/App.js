@@ -5,6 +5,8 @@ import ProfileSetUp from './screens/ProfileSetUp/index.js';
 import LoginSignUp from './screens/LoginSignUp/index.js';
 import { Provider } from './context';
 import ProtectedRoute from './components/ProtectedRoute';
+import LoadingOverlay from './components/LoadingOverlay';
+
 function App() {
   return (
     <BrowserRouter>
@@ -13,11 +15,13 @@ function App() {
           <Route path="/" exact component={LoginSignUp} />
           <ProtectedRoute
             routeProps={{
-              path: '/ProfileSetup',
+              path: '/profilesetup',
               exact: true,
             }}
-            ccomponent={ProfileSetUp}
+            component={ProfileSetUp}
           />
+
+          <LoadingOverlay />
         </div>
       </Provider>
     </BrowserRouter>

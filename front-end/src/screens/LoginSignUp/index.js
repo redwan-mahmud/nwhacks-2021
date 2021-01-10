@@ -7,6 +7,8 @@ import RegisterForm from '../../components/RegisterForm';
 import styled from 'styled-components';
 import userWorkingWhiteImg from './assets/user-working-white.png';
 import userWorkingOrangeImg from './assets/user-working-orange.png';
+import useContextValue from '../../context';
+import { useHistory } from 'react-router-dom';
 
 const Container = styled.main`
   display: flex;
@@ -76,6 +78,8 @@ const Container = styled.main`
 `;
 const LogInSignUp = () => {
   const [showRegisterForm, setShowForm] = useState(false); //use false for log in/
+  const { actions } = useContextValue();
+  const history = useHistory();
   //true for register
   function logInClicked() {
     setShowForm(false);
@@ -86,6 +90,16 @@ const LogInSignUp = () => {
     setShowForm(true);
     console.log('register clicked');
   }
+
+  const signIn = async (email, password) => {
+    try {
+      const isSuccessful = !!(await actions.signIn(email, password));
+
+      isSuccessful && history.push('/profilesetup');
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <Container showRegisterForm={showRegisterForm}>
@@ -117,7 +131,9 @@ const LogInSignUp = () => {
             Sign-Up
           </Button>
         </div>
-        <div>{showRegisterForm ? <RegisterForm /> : <SignInForm />}</div>
+        <div>
+          {showRegisterForm ? <RegisterForm /> : <SignInForm signIn={signIn} />}
+        </div>
       </section>
     </Container>
   );

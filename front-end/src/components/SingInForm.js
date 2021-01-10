@@ -16,14 +16,13 @@ const buttonStyle = {
   marginTop: '40px',
 };
 
-const SignInForm = () => {
+const SignInForm = ({ signIn }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  function handleSubmit(event) {
-    event.preventDefault();
-    console.log(email);
-    console.log(password);
+  async function handleSubmit(e) {
+    e.preventDefault();
+    await signIn(email, password);
   }
   return (
     <Form

@@ -65,17 +65,7 @@ const User = (sequelize, DataTypes) => {
     },
     street: {
       type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notNull: {
-          args: [true],
-          msg: 'street is required',
-        },
-        notEmpty: {
-          args: [true],
-          msg: 'street is required',
-        },
-      },
+      allowNull: true,
     },
     city: {
       type: DataTypes.STRING,
