@@ -3,7 +3,7 @@ import React from 'react';
 //import Button from 'react-bootstrap/Button';
 //import Container from 'react-bootstrap/Container';
 import ProfileSetUpForm from '../../components/ProfileSetUpForm';
-import userWorkingWhiteImg from '../LoginSignUp/assets/user-working-white.png';
+import userWorkingOrangeImg from '../LoginSignUp/assets/user-working-orange.png';
 import styled from 'styled-components';
 
 const Container = styled.main`
@@ -74,13 +74,13 @@ const Container = styled.main`
 const ProfileSetup = () => {
   return (
     <div>
-      <h1>Set Up Your Profile</h1>
+      
       <Container>
         <section>
           <ProfileSetUpForm />
         </section>
         <section>
-          <img src={userWorkingWhiteImg} alt="Logo" />
+          <img src={userWorkingOrangeImg} alt="Logo" />
         </section>
       </Container>
     </div>
