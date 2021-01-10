@@ -79,59 +79,19 @@ const User = (sequelize, DataTypes) => {
     },
     city: {
       type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notNull: {
-          args: [true],
-          msg: 'city is required',
-        },
-        notEmpty: {
-          args: [true],
-          msg: 'city is required',
-        },
-      },
+      allowNull: true,
     },
     country: {
       type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notNull: {
-          args: [true],
-          msg: 'country is required',
-        },
-        notEmpty: {
-          args: [true],
-          msg: 'country is required',
-        },
-      },
+      allowNull: true,
     },
     phoneNumber: {
       type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notNull: {
-          args: [true],
-          msg: 'phone number is required',
-        },
-        notEmpty: {
-          args: [true],
-          msg: 'phone number is required',
-        },
-      },
+      allowNull: true,
     },
     gender: {
       type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notNull: {
-          args: [true],
-          msg: 'gender is required',
-        },
-        notEmpty: {
-          args: [true],
-          msg: 'gender is required',
-        },
-      },
+      allowNull: true,
     },
     photoURL: {
       type: DataTypes.STRING,

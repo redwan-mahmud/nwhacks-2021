@@ -6,6 +6,6 @@ import authRouter from './auth.js';
 const router = express.Router();
 
 router.use('/jobs', jobsRouter);
-router.use('/user', userRouter);
+router.use('/users', userRouter);
 router.use('/auth', authRouter);
 export default router;

@@ -13,5 +13,5 @@
     "sourceType": "module"
   },
   "plugins": ["react", "prettier"],
-  "rules": { "prettier/prettier": "warn" }
+  "rules": { "prettier/prettier": "warn", "react/prop-types": 0 }
 }

@@ -14,7 +14,6 @@ export const signIn = asyncErrorHandler(async (req, res) => {
   let user;
   try {
     user = await findUserByEmail(email);
-    console.log(user);
   } catch (error) {
     const err = createErrorByStatus(401);
     return res.status(401).json(err);
@@ -29,6 +28,8 @@ export const signIn = asyncErrorHandler(async (req, res) => {
   const payload = {
     userId: String(user.id),
     email: user.email,
+    firstName: user.firstName,
+    lastName: user.lastName,
   };
 
   const accessToken = jwt.sign(
@@ -40,7 +41,7 @@ export const signIn = asyncErrorHandler(async (req, res) => {
   );
 
   //Send the jwt in the response
-  res.status(200).json({ accessToken });
+  res.status(200).json({ accessToken, ...payload });
 });
 
 router.post('/', asyncErrorHandler(signIn));
