@@ -1,6 +1,6 @@
-import Job from '../entity/job.js';
+import db from '../entity/index.js';
 
-Job.getJobs = async function () {
+export const getJobs = async function () {
   const jobs = await this.find({});
 
   if (jobs) {
@@ -10,7 +10,7 @@ Job.getJobs = async function () {
   }
 };
 
-Job.getJobByTitle = async function (title) {
+export const getJobByTitle = async function (title) {
   const job = await this.findOne({ where: { title: title } });
 
   if (job) {
@@ -18,4 +18,27 @@ Job.getJobByTitle = async function (title) {
   } else {
     throw new Error('Job not found');
   }
+};
+
+export const addJob = async function ({
+  title,
+  paymentRate,
+  duration,
+  description,
+  dateTime,
+  status,
+  jobReview,
+}) {
+  const [created] = await db.Job.findOrCreate({
+    where: {
+      title,
+      paymentRate,
+      duration,
+      description,
+      dateTime,
+      status,
+      jobReview,
+    },
+  });
+  return created;
 };
