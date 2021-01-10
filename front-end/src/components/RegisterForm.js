@@ -2,6 +2,25 @@ import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
+const buttonStyle = {
+  width: '280px',
+  height: '45px',
+  left: '1028px',
+  top: '603px',
+  background: '#FD7652',
+  boxShadow: '4px 4px 4px rgba(43, 50, 87, 0.25)',
+  borderRadius: '34.5px',
+  border: 'none',
+  alignSelf: 'center',
+  maxWidth: '100%',
+  marginTop: '40px',
+};
+
+const formStyle = {
+  display: 'flex',
+  flexDirection: 'column',
+};
+
 const RegisterForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -12,7 +31,7 @@ const RegisterForm = () => {
     console.log(password);
   }
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form style={formStyle} onSubmit={handleSubmit}>
       <Form.Group controlId="formBasicEmail">
         <Form.Label>Email address</Form.Label>
         <Form.Control
@@ -41,8 +60,8 @@ const RegisterForm = () => {
           placeholder="Password"
         />
       </Form.Group>
-      <Button variant="primary" type="submit">
-        Register
+      <Button style={buttonStyle} type="submit">
+        Submit
       </Button>
     </Form>
   );
