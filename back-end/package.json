@@ -10,24 +10,29 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint .",
-    "start": "node src/index.mjs",
-    "start:dev": "nodemon src/index.mjs"
+    "start": "node src/index.js",
+    "start:dev": "nodemon src/index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "express-async-handler": "^1.1.4",
+    "express-validator": "^6.9.2",
     "helmet": "^4.3.1",
-    "sequelize": "^6.3.5"
+    "sequelize": "^6.3.5",
+    "yup": "^0.32.8"
   },
   "devDependencies": {
     "eslint": "^7.17.0",
     "eslint-config-prettier": "^7.1.0",
     "eslint-plugin-prettier": "^3.3.1",
     "nodemon": "^2.0.7",
-    "prettier": "^2.2.1"
+    "prettier": "^2.2.1",
+    "sqlite3": "^5.0.1"
   }
 }
