@@ -7,8 +7,10 @@ const ProtectedRoute = ({
   routeProps,
   componentProps,
 }) => {
-  const { authenticatedUser } = useContectValue();
-  const isAuthenticated = !!authenticatedUser;
+  const {
+    authenticatedUser: { accessToken },
+  } = useContectValue();
+  const isAuthenticated = !!accessToken;
 
   return (
     <Route

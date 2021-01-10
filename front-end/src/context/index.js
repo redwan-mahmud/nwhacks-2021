@@ -9,7 +9,6 @@ export const Provider = ({ children }) => {
     JSON.parse(localStorage.getItem('authenticatedUser')) || null
   );
 
-  console.log(authenticatedUser);
   const [isLoading, setIsLoading] = useState(false);
 
   const data = new Data();
@@ -19,13 +18,9 @@ export const Provider = ({ children }) => {
       setIsLoading(true);
       const user = await data.getUser(email, password);
       if (user !== null) {
-        console.log(user);
         setAuthenticatedUser({ ...user });
 
-        localStorage.setItem(
-          'authenticatedUser',
-          JSON.stringify(authenticatedUser)
-        );
+        localStorage.setItem('authenticatedUser', JSON.stringify(user));
       } else {
         localStorage.removeItem('authenticatedUser');
         setAuthenticatedUser(null);
@@ -34,6 +29,28 @@ export const Provider = ({ children }) => {
       return user;
     } catch (err) {
       console.log(err);
+      setIsLoading(false);
+      return null;
+    }
+  };
+
+  const signUp = async (email, password) => {
+    try {
+      setIsLoading(true);
+      const user = await data.createUser(email, password);
+      if (user !== null) {
+        setAuthenticatedUser({ ...user });
+
+        localStorage.setItem('authenticatedUser', JSON.stringify(user));
+      } else {
+        localStorage.removeItem('authenticatedUser');
+        setAuthenticatedUser(null);
+      }
+      setIsLoading(false);
+      return user;
+    } catch (err) {
+      console.log(err);
+      setIsLoading(false);
       return null;
     }
   };
@@ -50,6 +67,7 @@ export const Provider = ({ children }) => {
     actions: {
       signIn,
       signOut,
+      signUp,
     },
   };
   return <Context.Provider value={value}>{children}</Context.Provider>;

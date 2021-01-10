@@ -19,6 +19,7 @@ const buttonStyle = {
 const SignInForm = ({ signIn }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const allFieldsCompleted = email && password;
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -48,8 +49,8 @@ const SignInForm = ({ signIn }) => {
           placeholder="Password"
         />
       </Form.Group>
-      <Button style={buttonStyle} type="submit">
-        Submit
+      <Button style={buttonStyle} type="submit" disabled={!allFieldsCompleted}>
+        Sign In
       </Button>
     </Form>
   );

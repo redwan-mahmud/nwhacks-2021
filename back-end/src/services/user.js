@@ -2,8 +2,8 @@ import db from '../entity/index.js';
 import bcrypt from 'bcryptjs';
 
 export const createNewUser = async ({
-  firstName,
-  lastName,
+  // firstName,
+  // lastName,
   email,
   hashedPassword,
   // street,
@@ -12,32 +12,28 @@ export const createNewUser = async ({
   // phoneNumber,
   // gender,
   // photoURL,
-  isEmployer,
+  isEmployer = false,
 }) => {
-  const [created] = await db.User.findOrCreate({
-    where: {
-      firstName,
-      lastName,
-      email,
-      password: hashedPassword,
-      // street,
-      // city,
-      // country,
-      // phoneNumber,
-      // gender,
-      // photoURL,
-      isEmployer,
-    },
+  return await db.User.create({
+    // firstName,
+    // lastName,
+    email,
+    password: hashedPassword,
+    // street,
+    // city,
+    // country,
+    // phoneNumber,
+    // gender,
+    // photoURL,
+    isEmployer,
   });
-
-  return created;
 };
 
 export const findUserByEmail = async (email) => {
   const user = await db.User.findOne({ where: { email } });
 
   if (!user) {
-    throw Error('User not found');
+    return user;
   }
 
   return user;

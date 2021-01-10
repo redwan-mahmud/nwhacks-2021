@@ -21,15 +21,17 @@ const formStyle = {
   flexDirection: 'column',
 };
 
-const RegisterForm = () => {
+const RegisterForm = ({ signUp }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  function handleSubmit(event) {
-    event.preventDefault();
-    console.log(email);
-    console.log(password);
+  async function handleSubmit(e) {
+    e.preventDefault();
+    await signUp(email, password);
   }
+
+  const allFieldsCompleted = email && password && confirmPassword;
+  const passwordMatches = password === confirmPassword;
   return (
     <Form style={formStyle} onSubmit={handleSubmit}>
       <Form.Group controlId="formBasicEmail">
@@ -58,10 +60,15 @@ const RegisterForm = () => {
           value={confirmPassword}
           type="password"
           placeholder="Password"
+          isInvalid={!passwordMatches}
         />
       </Form.Group>
-      <Button style={buttonStyle} type="submit">
-        Submit
+      <Button
+        style={buttonStyle}
+        type="submit"
+        disabled={!allFieldsCompleted || !passwordMatches}
+      >
+        Sign Up
       </Button>
     </Form>
   );

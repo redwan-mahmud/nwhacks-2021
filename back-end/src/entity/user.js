@@ -9,31 +9,11 @@ const User = (sequelize, DataTypes) => {
     },
     firstName: {
       type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notNull: {
-          args: [true],
-          msg: 'first name is required',
-        },
-        notEmpty: {
-          args: [true],
-          msg: 'first name is required',
-        },
-      },
+      allowNull: true,
     },
     lastName: {
       type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notNull: {
-          args: [true],
-          msg: 'last name is required',
-        },
-        notEmpty: {
-          args: [true],
-          msg: 'last name is required',
-        },
-      },
+      allowNull: true,
     },
     email: {
       type: DataTypes.STRING,
@@ -88,7 +68,7 @@ const User = (sequelize, DataTypes) => {
       allowNull: true,
     },
     isEmployer: {
-      type: DataTypes.STRING,
+      type: DataTypes.BOOLEAN,
       allowNull: false,
       validate: {
         notNull: {

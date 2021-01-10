@@ -36,12 +36,13 @@ export default class Data {
     }
   }
 
-  async createUser(firstName, lastName, emailAddress, password) {
-    const body = { firstName, lastName, emailAddress, password };
+  async createUser(email, password) {
+    const body = { email, password };
     const res = await this.api('/users', 'POST', body);
 
     if (res.status === 201) {
-      return { created: true, errors: [] };
+      const userInfo = await res.json();
+      return { ...userInfo, created: true, errors: [] };
     } else if (res.status === 400) {
       const data = await res.json();
       const messages = await data.error.message;

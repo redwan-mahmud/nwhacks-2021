@@ -83,17 +83,25 @@ const LogInSignUp = () => {
   //true for register
   function logInClicked() {
     setShowForm(false);
-    console.log('Log in clicked');
   }
 
   function registerClicked() {
     setShowForm(true);
-    console.log('register clicked');
   }
 
   const signIn = async (email, password) => {
     try {
       const isSuccessful = !!(await actions.signIn(email, password));
+
+      isSuccessful && history.push('/profilesetup');
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const signUp = async (email, password) => {
+    try {
+      const isSuccessful = !!(await actions.signUp(email, password));
 
       isSuccessful && history.push('/profilesetup');
     } catch (err) {
@@ -132,7 +140,11 @@ const LogInSignUp = () => {
           </Button>
         </div>
         <div>
-          {showRegisterForm ? <RegisterForm /> : <SignInForm signIn={signIn} />}
+          {showRegisterForm ? (
+            <RegisterForm signUp={signUp} />
+          ) : (
+            <SignInForm signIn={signIn} />
+          )}
         </div>
       </section>
     </Container>
