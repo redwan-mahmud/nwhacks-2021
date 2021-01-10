@@ -1,5 +1,5 @@
 // exports job model
-module.exports = (sequelize, DataTypes) => {
+const Job = (sequelize, DataTypes) => {
   // define job model
   sequelize.define('Job', {
     title: {
@@ -104,3 +104,5 @@ module.exports = (sequelize, DataTypes) => {
     },
   });
 };
+
+export default Job;
