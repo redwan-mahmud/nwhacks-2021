@@ -1,7 +1,7 @@
 // exports user model
 const User = (sequelize, DataTypes) => {
   // define user model
-  sequelize.define('User', {
+  return sequelize.define('User', {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -135,17 +135,7 @@ const User = (sequelize, DataTypes) => {
     },
     photoURL: {
       type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notNull: {
-          args: [true],
-          msg: 'photoURL is required',
-        },
-        notEmpty: {
-          args: [true],
-          msg: 'photoURL is required',
-        },
-      },
+      allowNull: true,
     },
     isEmployer: {
       type: DataTypes.STRING,

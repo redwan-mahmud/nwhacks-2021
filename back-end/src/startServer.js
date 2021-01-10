@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import db from './entity/index.js';
+import router from './routes/index.js';
 
 export const startServer = async () => {
   try {
@@ -16,7 +17,7 @@ export const startServer = async () => {
 
     // use router for api routes
 
-    // app.use("/api", router)
+    app.use('/api', router);
 
     // send 404 if no other route matched
     app.use((req, res) => {
