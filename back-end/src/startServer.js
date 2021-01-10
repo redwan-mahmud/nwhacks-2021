@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
+import db from './entity/index.js';
 
 export const startServer = async () => {
   try {
@@ -36,9 +37,23 @@ export const startServer = async () => {
     // set port
     app.set('port', port);
 
-    app.listen(app.get('port'), () => {
-      console.log(`Express server has started`);
-    });
+    // authenticate db connection, then sync, then start server
+    db.sequelize
+      .authenticate()
+      .then(() => {
+        console.log('Connection has been established successfully.');
+        return db.sequelize.sync();
+      })
+      .then(() => {
+        const server = app.listen(app.get('port'), () => {
+          console.log(
+            `Express server is listening on port ${server.address().port}`
+          );
+        });
+      })
+      .catch((err) => {
+        console.error('Unable to connect to the database:', err);
+      });
 
     return app;
   } catch (error) {

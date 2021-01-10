@@ -1,5 +1,5 @@
 // exports user model
-module.exports = (sequelize, DataTypes) => {
+const User = (sequelize, DataTypes) => {
   // define user model
   sequelize.define('User', {
     id: {
@@ -163,3 +163,5 @@ module.exports = (sequelize, DataTypes) => {
     },
   });
 };
+
+export default User;
