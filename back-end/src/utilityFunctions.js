@@ -1,4 +1,5 @@
 // utility functions
+import bcryptjs from 'bcryptjs';
 
 // load modules
 
@@ -21,5 +22,22 @@ const createErrorByStatus = (statusCode) => {
   return err;
 };
 
+/*  
+  salts and hashes a password string passed in and returns the hash.
+  from https://stackoverflow.com/questions/48799894/trying-to-hash-a-password-using-bcrypt-inside-an-async-function
+ */
+const hashPassword = async (password) => {
+  const saltRounds = 10;
+
+  const hashedPassword = await new Promise((resolve, reject) => {
+    bcryptjs.hash(password, saltRounds, function (err, hash) {
+      if (err) reject(err);
+      resolve(hash);
+    });
+  });
+
+  return hashedPassword;
+};
+
 // exports utility fuctions
-export { asyncErrorHandler, createErrorByStatus };
+export { hashPassword, createErrorByStatus };
