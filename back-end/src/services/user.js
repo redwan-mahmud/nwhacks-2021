@@ -1,4 +1,5 @@
 import db from '../entity/index.js';
+import bcrypt from 'bcryptjs';
 
 export const createNewUser = async ({
   firstName,
@@ -30,4 +31,18 @@ export const createNewUser = async ({
   });
 
   return created;
+};
+
+export const findUserByEmail = async (email) => {
+  const user = await db.User.findOne({ where: { email } });
+
+  if (!user) {
+    throw Error('User not found');
+  }
+
+  return user;
+};
+
+export const verifyPassword = async (unhasedPassword, hashedPassword) => {
+  return await bcrypt.compare(unhasedPassword, hashedPassword);
 };
