@@ -21,14 +21,14 @@ const LogInSignUp = () => {
 
   return (
     <div>
-      <Container>
+      <Container justify = "center">
         <Row>
-          <Col>1 of 2</Col>
+          <Col>Insert Image Here</Col>
           <Col>
             <Button onClick={logInClicked} variant="outline-primary">
               Sign-In
             </Button>{' '}
-            <Button onClick={registerClicked} variant="outline-primary">
+            <Button onClick={registerClicked} variant="outline-secondary">
               Sign-Up
             </Button>{' '}
             {showRegisterForm ? <RegisterForm /> : <SignInForm />}
