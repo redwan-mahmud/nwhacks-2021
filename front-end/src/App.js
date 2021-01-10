@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom'; // add route later
 import './App.css';
-import ProfileSetUp from './screens/ProfileSetUp';
+import ProfileSetUp from './screens/ProfileSetUp/index.js';
 import LoginSignUp from './screens/LoginSignUp/index.js';
 
 function App() {

@@ -3,16 +3,17 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 //import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
-import ProfileSetUpForm from '../components/ProfileSetUpForm';
+import Badge from 'react-bootstrap/Badge'
+import SkillsExperienceForm from '../components/SkillsExperienceForm';
 
-const ProfileSetup = () => {
+const SkillsandExperience = () => {
   return (
     <div>
       <h1>Set Up Your Profile</h1>
       <Container justify="center">
         <Row>
           <Col>
-            <ProfileSetUpForm />
+            <SkillsExperienceForm />
           </Col>
           <Col>Insert Image Here</Col>
         </Row>
@@ -21,4 +22,4 @@ const ProfileSetup = () => {
   );
 };
 
-export default ProfileSetup;
+export default SkillsandExperience;

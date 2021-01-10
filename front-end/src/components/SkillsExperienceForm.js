@@ -4,15 +4,8 @@ import Button from 'react-bootstrap/Button';
 //import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-const ProfileSetUpForm = () => {
-  //const [email, setEmail] = useState('');
-  // const [password, setPassword] = useState('');
+const SkillsExperienceForm = () => {
 
-  //   function handleSubmit(event) {
-  //     event.preventDefault();
-  //     console.log(email);
-  //     console.log(password);
-  //   }
   return (
     <Form>
       <Form.Row>
@@ -27,15 +20,7 @@ const ProfileSetUpForm = () => {
         </Form.Group>
       </Form.Row>
 
-      <Form.Group controlId="formGridGender">
-        <Form.Label>Gender</Form.Label>
-        <Form.Control as="select" defaultValue="Choose...">
-          <option>Choose...</option>
-          <option>Male</option>
-          <option>Female</option>
-          <option>...</option>
-        </Form.Control>
-      </Form.Group>
+      
       
       <Form.Group controlId="formGridDOB">
         <Form.Label>Date of Birth</Form.Label>
@@ -70,10 +55,10 @@ const ProfileSetUpForm = () => {
       </Form.Group>
 
       <Button variant="primary" type="submit">
-        Set Up Profile
+        Save
       </Button>
     </Form>
   );
 };
 
-export default ProfileSetUpForm;
+export default SkillsExperienceForm;
